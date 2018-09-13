@@ -46,10 +46,8 @@ public class InitActive implements Etat{
                    LOG.log(Level.INFO,"j ai reçus la réponse du serveur : ");
                    LOG.log(Level.INFO,"{0}",reponse);
             }
-             catch(IOException e)
+             catch(IOException | ClassNotFoundException e)
                  {
-            	 LOG.log(Level.SEVERE, e.getMessage(),e);
-                 } catch (ClassNotFoundException e) {
                LOG.log(Level.SEVERE, e.getMessage(),e);
 			}
 

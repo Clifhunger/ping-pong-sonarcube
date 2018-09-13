@@ -7,12 +7,15 @@ package pingpongapp.exemple;
 
 import java.io.*;
 import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author MR
  */
 public class Client {
+    private static final Logger LOG=Logger.getGlobal();
     public static void main(String[] args) throws IOException{
     
         // Creation de la socket
@@ -20,11 +23,8 @@ public class Client {
 	try {
 	 socket = new Socket("localhost", Serveur.portEcoute);
          // socket = new Socket(InetAddress.getByName("10.192.51.67"),5555);
-	} catch(UnknownHostException e) {
-	    System.err.println("Erreur sur l'hôte : " + e);
-	    System.exit(-1);
 	} catch(IOException e) {
-	    System.err.println("Creation de la socket impossible : " + e);
+		LOG.log(Level.SEVERE,"Erreur sur l'hôte : " + e.getMessage());
 	    System.exit(-1);
 	}
 	finally {
@@ -38,21 +38,21 @@ public class Client {
 	    input = new ObjectInputStream(socket.getInputStream());
 	    output = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
 	} catch(IOException e) {
-	    System.err.println("Association des flux impossible : " + e);
+		LOG.log(Level.SEVERE,"Association des flux impossible : " + e);
 	    System.exit(-1);
 	}
         
         try{
-            System.out.println("Connexion OK");
+        	LOG.log(Level.INFO,"Connexion OK");
             String message = "Envoie moi quelqu'un !";
-            System.out.println("Envoi demande...");
+            LOG.log(Level.INFO,"Envoi demande...");
             output.println(message);
-            System.out.println("Message envoyé");
-            System.out.println("Réception de la personne...");
+            LOG.log(Level.INFO,"Message envoyé");
+            LOG.log(Level.INFO,"Réception de la personne...");
         
             // Récuération de la personne 
             Object objet = input.readObject();
-            System.out.println("Personne reçue");
+            LOG.log(Level.INFO,"Personne reçue");
             
             if (objet instanceof Personne)
             {
@@ -61,18 +61,17 @@ public class Client {
             }
         } catch(Exception e)
             {
-    	        e.printStackTrace();
-    	        System.out.println(e.getMessage());
+        	LOG.log(Level.SEVERE, e.getMessage(),e);
             }
         // Fermeture des flux et des sockets
         try {
             input.close();
             output.close();
             socket.close();
-            System.out.println("Client de'connecte'.");
+            LOG.log(Level.INFO,"Client de'connecte'.");
             System.exit(0);
         } catch(IOException e) {
-            System.err.println("Erreur lors de la fermeture des flux et des sockets : " + e);
+        	LOG.log(Level.SEVERE,"Erreur lors de la fermeture des flux et des sockets : " + e);
             System.exit(-1);
         }            
     }
