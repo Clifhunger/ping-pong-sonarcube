@@ -4,6 +4,14 @@
   <artifactId>PingPongApp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Java :: Cours Qualite 2018 Ping Pong :: Cossard Emmanuel - Bidois Hugo </name>
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sonar.language>java</sonar.language>
+		<sonar.host.url>http://80.74.77.43</sonar.host.url>
+		<sonar.login>icone</sonar.login>
+		<sonar.password>icone</sonar.password>
+		<sonar.junit.reportPaths>target/surefire-reports</sonar.junit.reportPaths>
+	</properties>
   <build>
     <sourceDirectory>PingPongApp/src</sourceDirectory>
     <resources>
