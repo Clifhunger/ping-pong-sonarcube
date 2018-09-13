@@ -12,7 +12,7 @@ import java.util.Random;
  * @author clifhunger
  */
 public class ParamPartie {
-    private int IDPartie;
+    private int IdPartie;
     private int scoreMax;
     private int monScore;
     private int sonScore;
@@ -21,30 +21,31 @@ public class ParamPartie {
     private int probaSmash;
     private int probaAceAdversaire;
     private int probaAbandon;
-    public ParamPartie()
-    {
-        Random r=new Random();
-        numeroDuService=0;
-        monScore=0;
-        sonScore=0;
-        this.scoreMax=0;
-        probaSmash=10+r.nextInt(41-10);
-        probaAceAdversaire=10+r.nextInt(31-10);
-        probaAbandon=r.nextInt(5)+1;
-        
+
+    public ParamPartie() {
+        Random r = new Random();
+        numeroDuService = 0;
+        monScore = 0;
+        sonScore = 0;
+        this.scoreMax = 0;
+        probaSmash = 10 + r.nextInt(41 - 10);
+        probaAceAdversaire = 10 + r.nextInt(31 - 10);
+        probaAbandon = r.nextInt(5) + 1;
+
     }
-    public ParamPartie(int scoreMax)
-    {
-        Random r=new Random();
-        numeroDuService=0;
-        monScore=0;
-        sonScore=0;
-        this.scoreMax=scoreMax;
-        probaSmash=10+r.nextInt(41-10);
-        probaAceAdversaire=10+r.nextInt(31-10);
-        probaAbandon=r.nextInt(5)+1;
-        
+
+    public ParamPartie(int scoreMax) {
+        Random r = new Random();
+        numeroDuService = 0;
+        monScore = 0;
+        sonScore = 0;
+        this.scoreMax = scoreMax;
+        probaSmash = 10 + r.nextInt(41 - 10);
+        probaAceAdversaire = 10 + r.nextInt(31 - 10);
+        probaAbandon = r.nextInt(5) + 1;
+
     }
+
     public int getScoreMax() {
         return scoreMax;
     }
@@ -52,7 +53,7 @@ public class ParamPartie {
     public Service getServiceEncours() {
         return serviceEncours;
     }
-    
+
     public int getMonScore() {
         return monScore;
     }
@@ -60,6 +61,7 @@ public class ParamPartie {
     public int getSonScore() {
         return sonScore;
     }
+
     public void setServiceEncours(Service serviceEncours) {
         this.serviceEncours = serviceEncours;
     }
@@ -75,25 +77,26 @@ public class ParamPartie {
     public void setSonScore(int sonScore) {
         this.sonScore = sonScore;
     }
-    public void jeMarque()
-    {
+
+    public void jeMarque() {
         monScore++;
     }
-    public void ilMarque()
-    {
+
+    public void ilMarque() {
         sonScore++;
     }
-    
-     public int getNumeroDuService() {
+
+    public int getNumeroDuService() {
         return numeroDuService;
     }
-     public void resetNumeroDuService() {
-        this.numeroDuService =0;
+
+    public void resetNumeroDuService() {
+        this.numeroDuService = 0;
     }
-     public void serviceSuivant()
-     {
-         this.numeroDuService++;
-     }
+
+    public void serviceSuivant() {
+        this.numeroDuService++;
+    }
 
     public int getProbaSmash() {
         return probaSmash;
@@ -105,5 +108,19 @@ public class ParamPartie {
 
     public int getProbaAbandon() {
         return probaAbandon;
+    }
+
+    /**
+     * @return the iDPartie
+     */
+    public int getIDPartie() {
+        return IdPartie;
+    }
+
+    /**
+     * @param iDPartie the iDPartie to set
+     */
+    public void setIDPartie(int iDPartie) {
+        this.IdPartie = iDPartie;
     }
 }

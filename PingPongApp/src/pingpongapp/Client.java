@@ -11,26 +11,25 @@ import java.net.*;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static pingpongapp.Serveur.portEcoute;
 import pingpongapp.etat.*;
+
 /**
  *
  * @author ecossard
  */
 public class Client extends Joueur {
-    private Socket socket=null;
-    
-    public Client()
-    {
+    private Socket socket = null;
+
+    public Client() {
         super();
-        unePartie=new ParamPartie();
+        unePartie = new ParamPartie();
         setEtat(super.getEtatRepos());
     }
-public void lancerConnexion()
-{
-    
-    //recuperation de la config
-       Properties ipProps = new Properties();
+
+    public void lancerConnexion() {
+
+        // recuperation de la config
+        Properties ipProps = new Properties();
         FileInputStream in = null;
         try {
             in = new FileInputStream("src\\pingpongapp\\config.properties");
@@ -42,56 +41,45 @@ public void lancerConnexion()
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
-	try {
-	    //socket = new Socket("localhost", 5555);
-          System.out.println(parseInt(ipProps.getProperty("app.port")));
-          socket = new Socket(InetAddress.getByName(ipProps.getProperty("app.ipServeur")),parseInt(ipProps.getProperty("app.port")));//ici a finir=====================================
-	} 
-        catch(UnknownHostException e) {
-	    System.err.println("Erreur sur l'hôte : " + e);
-	    System.exit(-1);
-	} 
-        catch(IOException e) {
-	    System.err.println("Creation de la socket impossible : " + e);
-	    System.exit(-1);
-	} 
-       try {
-            output = new ObjectOutputStream(socket.getOutputStream()); 
-            input = new ObjectInputStream(socket.getInputStream()); 
+        try {
+            Logger.getLogger(Client.class.getName()).info(String.valueOf((ipProps.getProperty("app.port"))));
+            socket = new Socket(InetAddress.getByName(ipProps.getProperty("app.ipServeur")),
+                    parseInt(ipProps.getProperty("app.port")));// ici a finir=====================================
+        } catch (UnknownHostException e) {
+            Logger.getLogger(Client.class.getName()).info("Erreur sur l'hôte : " + e);
+        } catch (IOException e) {
+            Logger.getLogger(Client.class.getName()).info("Creation de la socket impossible : " + e);
+        }
+        try {
+            output = new ObjectOutputStream(socket.getOutputStream());
+            input = new ObjectInputStream(socket.getInputStream());
 
-	} catch(IOException e) {
-	    System.err.println("Association des flux impossible : " + e);
-	    System.exit(-1);
-	}
-           System.out.println("Connexion OK");  
-    
-        
-}
+        } catch (IOException e) {
+            Logger.getLogger(Client.class.getName()).info("Association des flux impossible : " + e);
+        }
+        Logger.getLogger(Client.class.getName()).info("Connexion OK");
+
+    }
 
     @Override
     public void setEtat(Etat etat) {
-       this.etat=etat;
+        this.etat = etat;
     }
 
     @Override
     public void close() {
-        try{
-       input.close();
-       output.close();
-        socket.close();
+        try {
+            input.close();
+            output.close();
+            socket.close();
+        } catch (IOException e) {
+            Logger.getLogger(Client.class.getName()).info("Erreur lors de la fermeture des flux et des sockets : " + e);
         }
-       catch(IOException e) {
-            System.err.println("Erreur lors de la fermeture des flux et des sockets : " + e);
-            System.exit(-1);
-        }            
     }
 
     @Override
     public Socket getSocket() {
         return socket;
     }
-
- 
-
 
 }
