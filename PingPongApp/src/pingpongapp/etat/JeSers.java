@@ -45,6 +45,7 @@ public class JeSers implements Etat{
             Thread.sleep(500);
         } catch (InterruptedException ex) {
             Logger.getLogger(JeSers.class.getName()).log(Level.SEVERE, null, ex);
+            Thread.currentThread().interrupt();
         }
         if(joueur.getMonScore()==joueur.getScoreMax() || joueur.getSonScore()==joueur.getScoreMax())
         {

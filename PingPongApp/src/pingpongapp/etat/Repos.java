@@ -71,7 +71,7 @@ public class Repos implements Etat{
             
             //envoie de la reponse
               Ackinit reponse=null;
-            if(objet.getScoreMax()==joueur.getScoreMax())
+            if(joueur.getScoreMax()==objet.getScoreMax())
             {
                 reponse=new Ackinit("oui");
                 joueur.setEtat(joueur.getEtatJeSers());

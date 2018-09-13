@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package pingpongapp.etat;
-import java.io.*;
 import java.net.*;
 import pingpongapp.*;
 import pingpongapp.PDU.*;

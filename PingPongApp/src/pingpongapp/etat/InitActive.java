@@ -6,6 +6,9 @@
 package pingpongapp.etat;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import pingpongapp.Joueur;
 import pingpongapp.PDU.Ackinit;
 
@@ -15,6 +18,8 @@ import pingpongapp.PDU.Ackinit;
  */
 public class InitActive implements Etat{
     private Joueur joueur;
+    private static final String NOT_SUPPORTED="Not supported yet.";
+    private static final Logger LOG=Logger.getGlobal();
 
     public InitActive(Joueur joueur) {
         this.joueur = joueur;
@@ -22,12 +27,12 @@ public class InitActive implements Etat{
 
     @Override
     public String getMessage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override
     public void init() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override
@@ -36,21 +41,23 @@ public class InitActive implements Etat{
          Ackinit reponse=null;
            try
             {
-                   System.out.println("Attente de la réponse");
+        	       LOG.log(Level.INFO,"Attente de la réponse");
                    reponse=(Ackinit) joueur.getInput().readObject(); 
-                   System.out.print("j'ai reçus la réponse du serveur : ");
-                   System.out.println(reponse);
+                   LOG.log(Level.INFO,"j ai reçus la réponse du serveur : ");
+                   LOG.log(Level.INFO,"{0}",reponse);
             }
-             catch(Exception e)
+             catch(IOException e)
                  {
-                     e.printStackTrace();
-                     System.out.println(e.getMessage());
-                 }
-         if(reponse.getMessage().equals("non"))
+            	 LOG.log(Level.SEVERE, e.getMessage(),e);
+                 } catch (ClassNotFoundException e) {
+               LOG.log(Level.SEVERE, e.getMessage(),e);
+			}
+
+         if("non".equals(reponse.getMessage()))
          {
-             System.out.println("fermeture de l'application");
+        	 LOG.log(Level.INFO,"fermeture de l'application");
              joueur.close();
-              System.exit(0);
+             System.exit(0);
          }
          else
          {
@@ -61,6 +68,6 @@ public class InitActive implements Etat{
 
     @Override
     public void echange() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        throw new UnsupportedOperationException(NOT_SUPPORTED); 
+        }
 }

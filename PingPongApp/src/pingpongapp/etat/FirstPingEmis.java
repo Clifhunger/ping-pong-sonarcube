@@ -5,6 +5,9 @@
  */
 package pingpongapp.etat;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import pingpongapp.Joueur;
 import pingpongapp.PDU.*;
 
@@ -14,6 +17,8 @@ import pingpongapp.PDU.*;
  */
 public class FirstPingEmis implements Etat{
    private Joueur joueur;
+   private static final String NOT_SUPPORTED="Not supported yet.";
+   private static final Logger LOG=Logger.getGlobal();
 
     public FirstPingEmis(Joueur joueur) {
         this.joueur = joueur;
@@ -21,22 +26,22 @@ public class FirstPingEmis implements Etat{
 
     @Override
     public String getMessage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        throw new UnsupportedOperationException(NOT_SUPPORTED); 
+        }
 
     @Override
     public void init() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override
     public void attenteAck() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override
     public void echange() {
-        System.out.println("1 er ping emis");
+        LOG.log(Level.INFO,"1 er ping emis");
          Object objet=null;
          try
             {
@@ -45,29 +50,28 @@ public class FirstPingEmis implements Etat{
             }
              catch(Exception e)
                  {
-                     e.printStackTrace();
-                     System.out.println(e.getMessage());
+            	 LOG.log(Level.SEVERE, e.getMessage(),e);
                  }
          if (objet instanceof Pong)
          {
                joueur.setEtat(joueur.getEtatJeJoue());
-               System.out.print("j'ai reçus un ");
-               System.out.println(objet);
+               LOG.log(Level.INFO,"j'ai reçus un ");
+               LOG.log(Level.INFO,"{0}",objet);
          }
          if(objet instanceof Ace)
          {
-             System.out.println(objet);
+        	 LOG.log(Level.INFO,"{0}",objet);
              joueur.setEtat(joueur.getEtatJeSers());
              joueur.jeMarque();
-             System.out.println("Fin de l'échange");
-             System.out.println("==========================================");
+             LOG.log(Level.INFO,"Fin de l'échange");
+             LOG.log(Level.INFO,"==========================================");
          }
          if(objet instanceof Smash)
          {
              joueur.setEtat(joueur.getEtatJeSers());
              joueur.ilMarque();
-             System.out.println("Fin de l'échange");
-             System.out.println("==========================================");
+             LOG.log(Level.INFO,"Fin de l'échange");
+             LOG.log(Level.INFO,"==========================================");
          }
         
     }

@@ -13,7 +13,7 @@ import java.net.*;
  * @author MR
  */
 public class Client {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
     
         // Creation de la socket
 	Socket socket = null;
@@ -26,6 +26,9 @@ public class Client {
 	} catch(IOException e) {
 	    System.err.println("Creation de la socket impossible : " + e);
 	    System.exit(-1);
+	}
+	finally {
+		socket.close();
 	}
         
         // Association d'un flux d'entree et de sortie

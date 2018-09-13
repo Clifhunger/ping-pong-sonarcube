@@ -15,7 +15,7 @@ import java.io.*;
 public class Serveur {
     public static final int portEcoute = 5555;
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         
         // Creation de la socket serveur
 	ServerSocket socketServeur = null;
@@ -24,6 +24,9 @@ public class Serveur {
 	} catch(IOException e) {
 	    System.err.println("Creation de la socket impossible : " + e);
 	    System.exit(-1); // code retour pour le système
+	}
+	finally {
+		socketServeur.close();
 	}
         
         // Attente d'une connexion d'un client
