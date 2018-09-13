@@ -5,6 +5,7 @@
  */
 package pingpongapp;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 /**
@@ -23,7 +24,7 @@ public class ParamPartie {
     private int probaAbandon;
 
     public ParamPartie() {
-        Random r = new Random();
+        Random r = new SecureRandom();
         numeroDuService = 0;
         monScore = 0;
         sonScore = 0;
@@ -35,7 +36,7 @@ public class ParamPartie {
     }
 
     public ParamPartie(int scoreMax) {
-        Random r = new Random();
+        Random r = new SecureRandom();
         numeroDuService = 0;
         monScore = 0;
         sonScore = 0;

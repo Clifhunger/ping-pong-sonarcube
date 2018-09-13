@@ -6,6 +6,8 @@
 package pingpongapp.exemple;
 
 import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.io.*;
 
 /**
@@ -14,37 +16,41 @@ import java.io.*;
  */
 public class Serveur {
     public static final int portEcoute = 5555;
+    private static final Logger LOG=Logger.getGlobal();
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         
         // Creation de la socket serveur
 	ServerSocket socketServeur = null;
 	try {	
 	    socketServeur = new ServerSocket(portEcoute);
 	} catch(IOException e) {
-	    System.err.println("Creation de la socket impossible : " + e);
-	    System.exit(-1); // code retour pour le système
+		LOG.log(Level.SEVERE,"Creation de la socket impossible : " + e);
+	    return;
+	}
+	finally {
+		socketServeur.close();
 	}
         
         // Attente d'une connexion d'un client
 	Socket socketClient = null;
 	try {
-            System.out.println("Attente de connexion");
+		LOG.log(Level.INFO,"Attente de connexion");
 	    socketClient = socketServeur.accept();
-            System.out.println("Connexion OK");
+	    LOG.log(Level.INFO,"Connexion OK");
 	} catch(IOException e) {
-	    System.err.println("Erreur lors de l'attente d'une connexion : " + e);
-	    System.exit(-1); // code retour pour le système
+		LOG.log(Level.SEVERE,"Erreur lors de l'attente d'une connexion : " + e);
+	   return;
 	}
  
         // Association d'un flux d'entree et de sortie
-	BufferedReader input = null; //  buffer de lecture
-	ObjectOutputStream output = null; // flux d'ecriture
+	BufferedReader input = null;
+	ObjectOutputStream output = null;
 	try {
 	    input = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
 	    output = new ObjectOutputStream(socketClient.getOutputStream());
 	} catch(IOException e) {
-	    System.err.println("Association des flux impossible : " + e);
+		LOG.log(Level.SEVERE,"Association des flux impossible : " + e);
 	    System.exit(-1);
 	}
         
@@ -53,22 +59,22 @@ public class Serveur {
 	try {
 	    message = input.readLine();
 	} catch(IOException e) {
-	    System.err.println("Erreur lors de la lecture : " + e);
+		LOG.log(Level.SEVERE,"Erreur lors de la lecture : " + e);
 	    System.exit(-1);
 	}
-	System.out.println("Lu: " + message);
+	LOG.log(Level.INFO,"Lu: {0}",message);
         
        
         // Creation de l'objet a envoyer et envoi
         try {
-            System.out.println("Pre'paration de l'envoi...");
+        	LOG.log(Level.INFO,"Pre'paration de l'envoi...");
             Personne p = new Personne("Jean","Pierre",26);
-            System.out.println("Envoi de la personne...");
+            LOG.log(Level.INFO,"Envoi de la personne...");
             output.writeObject(p);
-            System.out.println("Personne envoyee' !");
+            LOG.log(Level.INFO,"Personne envoyee' !");
         } catch(Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            LOG.log(Level.SEVERE,e.getMessage(),e);
         }
         
         // Fermeture des flux et des sockets
@@ -77,10 +83,10 @@ public class Serveur {
             output.close();
             socketClient.close();
             socketServeur.close();
-            System.out.println("Serveur de'connecte'.");
+            LOG.log(Level.INFO,"Serveur de'connecte'.");
             System.exit(0);
         } catch(IOException e) {
-            System.err.println("Erreur lors de la fermeture des flux et des sockets : " + e);
+        	LOG.log(Level.INFO,"Erreur lors de la fermeture des flux et des sockets : " + e);
             System.exit(-1);
         }            
 

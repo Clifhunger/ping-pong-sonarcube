@@ -5,6 +5,9 @@
  */
 package pingpongapp.etat;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import pingpongapp.Joueur;
 import pingpongapp.PDU.*;
 
@@ -14,6 +17,8 @@ import pingpongapp.PDU.*;
  */
 public class IlJoue implements Etat{
    private Joueur joueur;
+   private static final String NOT_SUPPORTED="Not supported yet.";
+   private static final Logger LOG=Logger.getGlobal();
 
     public IlJoue(Joueur joueur) {
         this.joueur = joueur;
@@ -21,17 +26,17 @@ public class IlJoue implements Etat{
 
     @Override
     public String getMessage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override
     public void init() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override
     public void attenteAck() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override
@@ -40,13 +45,12 @@ public class IlJoue implements Etat{
         try
             {
                   objet=joueur.getInput().readObject();
-                  System.out.print("j'ai reçu un ");
-                  System.out.println(objet);
+                  LOG.log(Level.INFO,"j'ai reçu un ");
+                  LOG.log(Level.INFO,"{0}",objet);
             }
              catch(Exception e)
                  {
-                     e.printStackTrace();
-                     System.out.println(e.getMessage());
+            	 LOG.log(Level.SEVERE, e.getMessage(),e); 
                  }
         if(objet instanceof Pong)
         {
@@ -56,8 +60,8 @@ public class IlJoue implements Etat{
         {
              joueur.setEtat(joueur.getEtatJeSers());
              joueur.ilMarque();
-             System.out.println("Fin de l'échange");
-             System.out.println("==========================================");
+             LOG.log(Level.INFO,"Fin de l'échange");
+             LOG.log(Level.INFO,"==========================================");
         }
     }
 }

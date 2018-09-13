@@ -6,13 +6,15 @@
 package pingpongapp.exemple;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Gwen
  */
 public class Personne implements Serializable {
-
+	private static final Logger LOG=Logger.getGlobal();
 	public String Nom;
 	public String Prenom;
 	public int Age;
@@ -23,8 +25,8 @@ public class Personne implements Serializable {
 	}
 	
 	public void affiche() {
-	    System.out.println("Nom : " + this.Nom);
-	    System.out.println("Prenom : " + this.Prenom);
-	    System.out.println("Age : " + this.Age);
+		LOG.log(Level.INFO,"Nom : " + this.Nom);
+		LOG.log(Level.INFO,"Prenom : " + this.Prenom);
+		LOG.log(Level.INFO,"Age : " + this.Age);
 	}
 }
