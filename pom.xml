@@ -7,10 +7,10 @@
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sonar.language>java</sonar.language>
+		<sonar.junit.reportPaths>target/surefire-reports</sonar.junit.reportPaths>
 		<sonar.host.url>http://80.74.77.43</sonar.host.url>
 		<sonar.login>icone</sonar.login>
 		<sonar.password>icone</sonar.password>
-		<sonar.junit.reportPaths>target/surefire-reports</sonar.junit.reportPaths>
 	</properties>
   <build>
     <sourceDirectory>PingPongApp/src</sourceDirectory>

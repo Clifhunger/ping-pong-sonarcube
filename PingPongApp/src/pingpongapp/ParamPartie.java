@@ -13,7 +13,7 @@ import java.util.Random;
  * @author clifhunger
  */
 public class ParamPartie {
-    private int IdPartie;
+    private int idPartie;
     private int scoreMax;
     private int monScore;
     private int sonScore;
@@ -115,13 +115,13 @@ public class ParamPartie {
      * @return the iDPartie
      */
     public int getIDPartie() {
-        return IdPartie;
+        return idPartie;
     }
 
     /**
      * @param iDPartie the iDPartie to set
      */
     public void setIDPartie(int iDPartie) {
-        this.IdPartie = iDPartie;
+        this.idPartie = iDPartie;
     }
 }
