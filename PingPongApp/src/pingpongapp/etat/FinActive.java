@@ -5,51 +5,48 @@
  */
 package pingpongapp.etat;
 
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import pingpongapp.Joueur;
-import pingpongapp.PDU.*;
 
 /**
  *
  * @author clifhunger
  */
-public class FinActive implements Etat{
+public class FinActive implements Etat {
     private Joueur joueur;
-    private static final String NOT_SUPPORTED="Not supported yet.";
-    private static final Logger LOG=Logger.getGlobal();
+    private static final Logger LOG = Logger.getGlobal();
 
     public FinActive(Joueur joueur) {
         this.joueur = joueur;
     }
+
     @Override
     public String getMessage() {
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
+        LOG.log(Level.INFO, "finActive - getMessage");
+        return joueur.toString();
     }
 
     @Override
     public void init() {
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
+        LOG.log(Level.INFO, "finActive - init");
     }
 
     @Override
     public void attenteAck() {
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
+        LOG.log(Level.INFO, "finActive - attenteAck");
     }
-    
+
     @Override
     public void echange() {
         try {
-        	   LOG.log(Level.INFO,"fin de la partie");
-               Object ackFin=joueur.getInput().readObject();
-               LOG.log(Level.INFO,"{0}",ackFin);
-            } 
-            catch(Exception e)
-                {
-            	  LOG.log(Level.SEVERE, e.getMessage(),e);
-                }
-          joueur.setEtat(joueur.getEtatRepos());
+            LOG.log(Level.INFO, "fin de la partie");
+            Object ackFin = joueur.getInput().readObject();
+            LOG.log(Level.INFO, "{0}", ackFin);
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, e.getMessage(), e);
+        }
+        joueur.setEtat(joueur.getEtatRepos());
     }
 }

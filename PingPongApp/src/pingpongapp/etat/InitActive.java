@@ -27,11 +27,13 @@ public class InitActive implements Etat {
 
     @Override
     public String getMessage() {
+        LOG.log(Level.INFO, "initActive - getMessage");
         throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override
     public void init() {
+        LOG.log(Level.INFO, "initActive - init");
         throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 

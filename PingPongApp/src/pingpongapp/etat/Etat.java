@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package pingpongapp.etat;
-import java.net.*;
-import pingpongapp.*;
-import pingpongapp.PDU.*;
 
 /**
  *
@@ -14,8 +11,11 @@ import pingpongapp.PDU.*;
  */
 public interface Etat {
 
-    public  String getMessage();
+    public String getMessage();
+
     public void init();
+
     public void attenteAck();
+
     public void echange();
 }

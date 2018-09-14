@@ -10,6 +10,6 @@ package pingpongapp;
  * @author clifhunger
  */
 public enum Service {
-    ILSert,JeSert;
-    
+    IL_SERT, JE_SERT;
+
 }

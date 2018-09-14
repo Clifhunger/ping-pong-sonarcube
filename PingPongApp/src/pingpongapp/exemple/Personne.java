@@ -14,19 +14,21 @@ import java.util.logging.Logger;
  * @author Gwen
  */
 public class Personne implements Serializable {
-	private static final Logger LOG=Logger.getGlobal();
-	public String Nom;
-	public String Prenom;
-	public int Age;
-	public Personne(String unNom, String unPrenom, int unAge){
-		Nom = unNom;
-		Prenom = unPrenom;
-		Age = unAge;		
+	private static final long serialVersionUID = -4315822854881361218L;
+	private static final Logger LOG = Logger.getGlobal();
+	public final String nom;
+	public final String prenom;
+	public final int age;
+
+	public Personne(String unNom, String unPrenom, int unAge) {
+		nom = unNom;
+		prenom = unPrenom;
+		age = unAge;
 	}
-	
+
 	public void affiche() {
-		LOG.log(Level.INFO,"Nom : " + this.Nom);
-		LOG.log(Level.INFO,"Prenom : " + this.Prenom);
-		LOG.log(Level.INFO,"Age : " + this.Age);
+		LOG.log(Level.INFO, "Nom : " + this.nom);
+		LOG.log(Level.INFO, "Prenom : " + this.prenom);
+		LOG.log(Level.INFO, "Age : " + this.age);
 	}
 }

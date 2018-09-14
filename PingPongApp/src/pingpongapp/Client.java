@@ -42,7 +42,7 @@ public class Client extends Joueur {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            Logger.getLogger(Client.class.getName()).info(String.valueOf((ipProps.getProperty("app.port"))));
+            Logger.getLogger(Client.class.getName()).info(String.valueOf(ipProps.getProperty("app.port")));
             socket = new Socket(InetAddress.getByName(ipProps.getProperty("app.ipServeur")),
                     parseInt(ipProps.getProperty("app.port")));// ici a finir=====================================
         } catch (UnknownHostException e) {
