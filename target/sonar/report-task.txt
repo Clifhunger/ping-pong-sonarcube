@@ -1,0 +1,6 @@
+projectKey=PingPongApp:PingPongApp
+serverUrl=http://80.74.77.43
+serverVersion=6.7.0.33306
+dashboardUrl=http://80.74.77.43/dashboard/index/PingPongApp:PingPongApp
+ceTaskId=AWXXVr3NjXdqIOYiQ1j2
+ceTaskUrl=http://80.74.77.43/api/ce/task?id=AWXXVr3NjXdqIOYiQ1j2
