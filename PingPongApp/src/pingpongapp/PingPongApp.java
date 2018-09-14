@@ -16,6 +16,9 @@ import java.util.logging.Logger;
 public class PingPongApp {
 
     private static final Logger LOG = Logger.getGlobal();
+    private static final int CREATE = 1;
+    private static final int FIND = 2;
+    private static final int QUIT = 3;
 
     private PingPongApp() {
     }
@@ -34,16 +37,16 @@ public class PingPongApp {
             LOG.info("1 : Créer      2 : Rechercher    3 : Quitter");
 
             switch (sc.nextInt()) {
-            case 1:
+            case CREATE:
                 joueur = new Serveur();
 
                 bool = false;
                 break;
-            case 2:
+            case FIND:
                 joueur = new Client();
                 bool = false;
                 break;
-            case 3:
+            case QUIT:
                 System.exit(0);
                 break;
             default:

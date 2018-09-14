@@ -12,8 +12,10 @@ import java.io.Serializable;
  * @author clifhunger
  */
 public class Ace implements Serializable {
-     public String toString()
-    {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    public String toString() {
         return "tu a fait un Ace";
     }
 }

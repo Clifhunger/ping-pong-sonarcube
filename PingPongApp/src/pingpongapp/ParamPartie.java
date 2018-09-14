@@ -23,15 +23,20 @@ public class ParamPartie {
     private int probaAceAdversaire;
     private int probaAbandon;
 
+    private static final int FOURTY_ONE = 41;
+    private static final int TEN = 10;
+    private static final int THIRTY_ONE = 31;
+    private static final int FIVE = 5;
+
     public ParamPartie() {
         Random r = new SecureRandom();
         numeroDuService = 0;
         monScore = 0;
         sonScore = 0;
         this.scoreMax = 0;
-        probaSmash = 10 + r.nextInt(41 - 10);
-        probaAceAdversaire = 10 + r.nextInt(31 - 10);
-        probaAbandon = r.nextInt(5) + 1;
+        probaSmash = TEN + r.nextInt(FOURTY_ONE - TEN);
+        probaAceAdversaire = TEN + r.nextInt(THIRTY_ONE - TEN);
+        probaAbandon = r.nextInt(FIVE) + 1;
 
     }
 
@@ -41,9 +46,9 @@ public class ParamPartie {
         monScore = 0;
         sonScore = 0;
         this.scoreMax = scoreMax;
-        probaSmash = 10 + r.nextInt(41 - 10);
-        probaAceAdversaire = 10 + r.nextInt(31 - 10);
-        probaAbandon = r.nextInt(5) + 1;
+        probaSmash = TEN + r.nextInt(FOURTY_ONE - TEN);
+        probaAceAdversaire = TEN + r.nextInt(THIRTY_ONE - TEN);
+        probaAbandon = r.nextInt(FIVE) + 1;
 
     }
 

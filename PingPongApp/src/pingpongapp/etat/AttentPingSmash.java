@@ -5,6 +5,7 @@
  */
 package pingpongapp.etat;
 
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Random;
 import java.util.logging.Level;
@@ -33,7 +34,7 @@ public class AttentPingSmash extends Etat {
             objet = joueur.getInput().readObject();
             LOG.log(Level.INFO, "j ai recus un {0}", objet);
             LOG.info((String) objet);
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
         if (objet instanceof Ping) {
@@ -56,7 +57,7 @@ public class AttentPingSmash extends Etat {
 
             try {
                 joueur.getOutput().writeObject(unCout);
-            } catch (Exception e) {
+            } catch (IOException e) {
                 LOG.log(Level.SEVERE, e.getMessage(), e);
             }
         }

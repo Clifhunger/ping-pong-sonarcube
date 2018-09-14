@@ -17,18 +17,20 @@ import pingpongapp.etat.*;
  * @author ecossard
  */
 public class Serveur extends Joueur {
-    private static int portEcoute;
+    private int portEcoute;
     private ServerSocket socketServeur = null;
     private Socket socketClient = null;
     private static final Logger LOG = Logger.getGlobal();
+    private static final int SCORE_MAX = 11;
 
     public Serveur() {
         super();
-        unePartie = new ParamPartie(11);
+        unePartie = new ParamPartie(SCORE_MAX);
 
         Properties ipProps = super.runConfig();
         portEcoute = parseInt(ipProps.getProperty("app.port"));
-        LOG.info(String.valueOf(portEcoute));
+        String portEcouteString = String.valueOf(portEcoute);
+        LOG.info(portEcouteString);
         setEtat(super.getEtatRepos());
         try {
             socketServeur = new ServerSocket(portEcoute);
@@ -41,15 +43,15 @@ public class Serveur extends Joueur {
     /**
      * @return the portEcoute
      */
-    public static int getPortEcoute() {
+    public int getPortEcoute() {
         return portEcoute;
     }
 
     /**
      * @param portEcoute the portEcoute to set
      */
-    public static void setPortEcoute(int portEcoute) {
-        Serveur.portEcoute = portEcoute;
+    public void setPortEcoute(int portEcoute) {
+        this.portEcoute = portEcoute;
     }
 
     public void lancerConnexion() {

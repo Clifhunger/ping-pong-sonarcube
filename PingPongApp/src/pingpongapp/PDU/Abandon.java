@@ -11,14 +11,16 @@ import java.io.Serializable;
  *
  * @author clifhunger
  */
-public class Abandon implements Serializable{
-     private String message;
-    public Abandon(String message)
-    {
-        this.message=message;
+public class Abandon implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private String message;
+
+    public Abandon(String message) {
+        this.message = message;
     }
-    public String toString()
-    {
+
+    @Override
+    public String toString() {
         return message;
     }
 }

@@ -5,6 +5,7 @@
  */
 package pingpongapp.etat;
 
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Random;
 import java.util.logging.Level;
@@ -21,6 +22,9 @@ public class IlSert extends Etat {
     private Joueur joueur;
     private static final Logger LOG = Logger.getGlobal();
 
+    private static final int TWO = 2;
+    private static final int HUNDRED = 100;
+
     public IlSert(Joueur joueur) {
         this.joueur = joueur;
     }
@@ -32,14 +36,14 @@ public class IlSert extends Etat {
         try {
             objet = joueur.getInput().readObject();
 
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
         if (objet instanceof Service) {
             try {
                 LOG.log(Level.INFO, "{0}", objet);
                 joueur.getOutput().writeObject(new Service("OK pour le changement"));
-            } catch (Exception e) {
+            } catch (IOException e) {
                 LOG.log(Level.SEVERE, e.getMessage(), e);
             }
             joueur.setEtat(joueur.getEtatJeSers());
@@ -67,8 +71,8 @@ public class IlSert extends Etat {
             Random rand = new SecureRandom();
             int cas = 0;
             if ((rand.nextInt() + 1) <= joueur.getProbaSmash()) {
-                cas = 2;
-            } else if ((rand.nextInt(100) + 1) > (100 - joueur.getProbaAceAdversaire())) {
+                cas = TWO;
+            } else if ((rand.nextInt(HUNDRED) + 1) > (HUNDRED - joueur.getProbaAceAdversaire())) {
                 cas = 1;
             }
             Object unCout;
@@ -77,7 +81,7 @@ public class IlSert extends Etat {
                 unCout = new Ace();
                 joueur.ilMarque();
                 break;
-            case 2:
+            case TWO:
                 unCout = new Smash();
                 joueur.jeMarque();
                 break;
@@ -89,7 +93,7 @@ public class IlSert extends Etat {
             try {
 
                 joueur.getOutput().writeObject(unCout);
-            } catch (Exception e) {
+            } catch (IOException e) {
                 LOG.log(Level.SEVERE, e.getMessage(), e);
             }
 

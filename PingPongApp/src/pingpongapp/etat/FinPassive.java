@@ -5,6 +5,7 @@
  */
 package pingpongapp.etat;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,7 +30,7 @@ public class FinPassive extends Etat {
 
             joueur.getOutput().writeObject(new AckFin("l'autre joueur a bien recus la Fin de Partie"));
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
         joueur.setEtat(joueur.getEtatRepos());

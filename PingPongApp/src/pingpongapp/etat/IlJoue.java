@@ -5,6 +5,7 @@
  */
 package pingpongapp.etat;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,7 +31,7 @@ public class IlJoue extends Etat {
             objet = joueur.getInput().readObject();
             LOG.log(Level.INFO, "j'ai reçu un ");
             LOG.log(Level.INFO, "{0}", objet);
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
         if (objet instanceof Pong) {

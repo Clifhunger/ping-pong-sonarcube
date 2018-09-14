@@ -12,13 +12,15 @@ import java.io.Serializable;
  * @author clifhunger
  */
 public class AckFin implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String message;
-    public AckFin(String message)
-    {
-        this.message=message;
+
+    public AckFin(String message) {
+        this.message = message;
     }
-    public String toString()
-    {
+
+    @Override
+    public String toString() {
         return message;
     }
 }

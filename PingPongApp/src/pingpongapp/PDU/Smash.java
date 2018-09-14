@@ -11,9 +11,11 @@ import java.io.Serializable;
  *
  * @author clifhunger
  */
-public class Smash  implements Serializable {
-     public String toString()
-    {
+public class Smash implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    public String toString() {
         return "Smash";
     }
 

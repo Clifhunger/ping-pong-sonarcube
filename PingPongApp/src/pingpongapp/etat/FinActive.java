@@ -5,6 +5,7 @@
  */
 package pingpongapp.etat;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,7 +29,7 @@ public class FinActive extends Etat {
             LOG.log(Level.INFO, "fin de la partie");
             Object ackFin = joueur.getInput().readObject();
             LOG.log(Level.INFO, "{0}", ackFin);
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
         joueur.setEtat(joueur.getEtatRepos());

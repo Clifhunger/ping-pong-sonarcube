@@ -11,25 +11,24 @@ import java.io.Serializable;
  *
  * @author ecossard
  */
-public class Ackinit implements Serializable{
+public class Ackinit implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String reponse;
-    public Ackinit(String reponse)
-    {
-        this.reponse=reponse;
+
+    public Ackinit(String reponse) {
+        this.reponse = reponse;
     }
-    public String getMessage()
-    {
+
+    public String getMessage() {
         return reponse;
     }
-    public String toString()
-    {
-        if(reponse.equals("oui"))
-        {
+
+    @Override
+    public String toString() {
+        if (reponse.equals("oui")) {
             return "j'accepte la partie";
-        }
-        else
-        {
+        } else {
             return "je refuse la partie";
         }
     }

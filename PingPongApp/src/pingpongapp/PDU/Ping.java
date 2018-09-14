@@ -11,9 +11,11 @@ import java.io.Serializable;
  *
  * @author ecossard
  */
-public class Ping implements Serializable{
-    public String toString()
-    {
+public class Ping implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    public String toString() {
         return "Ping";
     }
 
