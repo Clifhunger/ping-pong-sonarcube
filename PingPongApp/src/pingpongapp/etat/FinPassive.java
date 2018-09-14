@@ -15,31 +15,12 @@ import pingpongapp.PDU.*;
  *
  * @author clifhunger
  */
-public class FinPassive implements Etat {
+public class FinPassive extends Etat {
     private Joueur joueur;
-    private static final String NOT_SUPPORTED = "Not supported yet.";
     private static final Logger LOG = Logger.getGlobal();
 
     public FinPassive(Joueur joueur) {
         this.joueur = joueur;
-    }
-
-    @Override
-    public String getMessage() {
-        LOG.log(Level.INFO, "finPassive - getMessage");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
-    }
-
-    @Override
-    public void init() {
-        LOG.log(Level.INFO, "finPassive - init");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
-    }
-
-    @Override
-    public void attenteAck() {
-        LOG.log(Level.INFO, "finPassive - attenteAck");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override

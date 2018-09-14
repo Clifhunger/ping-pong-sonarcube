@@ -9,7 +9,6 @@ import java.io.*;
 import static java.lang.Integer.parseInt;
 import java.net.*;
 import java.util.Properties;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import pingpongapp.etat.*;
 
@@ -29,18 +28,7 @@ public class Client extends Joueur {
     public void lancerConnexion() {
 
         // recuperation de la config
-        Properties ipProps = new Properties();
-        FileInputStream in = null;
-        try {
-            in = new FileInputStream("src\\pingpongapp\\config.properties");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            ipProps.load(in);
-        } catch (IOException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Properties ipProps = super.runConfig();
         try {
             Logger.getLogger(Client.class.getName()).info(String.valueOf(ipProps.getProperty("app.port")));
             socket = new Socket(InetAddress.getByName(ipProps.getProperty("app.ipServeur")),

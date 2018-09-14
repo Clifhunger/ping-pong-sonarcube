@@ -14,28 +14,12 @@ import pingpongapp.Joueur;
  *
  * @author clifhunger
  */
-public class FinActive implements Etat {
+public class FinActive extends Etat {
     private Joueur joueur;
     private static final Logger LOG = Logger.getGlobal();
 
     public FinActive(Joueur joueur) {
         this.joueur = joueur;
-    }
-
-    @Override
-    public String getMessage() {
-        LOG.log(Level.INFO, "finActive - getMessage");
-        return joueur.toString();
-    }
-
-    @Override
-    public void init() {
-        LOG.log(Level.INFO, "finActive - init");
-    }
-
-    @Override
-    public void attenteAck() {
-        LOG.log(Level.INFO, "finActive - attenteAck");
     }
 
     @Override

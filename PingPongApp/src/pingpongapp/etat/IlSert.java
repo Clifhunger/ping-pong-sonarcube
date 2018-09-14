@@ -17,31 +17,12 @@ import pingpongapp.PDU.*;
  *
  * @author clifhunger
  */
-public class IlSert implements Etat {
+public class IlSert extends Etat {
     private Joueur joueur;
-    private static final String NOT_SUPPORTED = "Not supported yet.";
     private static final Logger LOG = Logger.getGlobal();
 
     public IlSert(Joueur joueur) {
         this.joueur = joueur;
-    }
-
-    @Override
-    public String getMessage() {
-        LOG.log(Level.INFO, "ilSert - getMessage");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
-    }
-
-    @Override
-    public void init() {
-        LOG.log(Level.INFO, "ilSert - init");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
-    }
-
-    @Override
-    public void attenteAck() {
-        LOG.log(Level.INFO, "ilSert - attenteAck");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override

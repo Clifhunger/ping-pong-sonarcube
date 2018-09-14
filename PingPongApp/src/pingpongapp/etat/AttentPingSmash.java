@@ -17,82 +17,56 @@ import pingpongapp.PDU.*;
  *
  * @author clifhunger
  */
-public class AttentPingSmash implements Etat {
+public class AttentPingSmash extends Etat {
     private Joueur joueur;
-    private static final String NOT_SUPPORTED="Not supported yet.";
-    private static final int HUNDRED=100;
-    private static final Logger LOG=Logger.getGlobal();
+    private static final int HUNDRED = 100;
+    private static final Logger LOG = Logger.getGlobal();
 
     public AttentPingSmash(Joueur joueur) {
         this.joueur = joueur;
     }
 
     @Override
-    public String getMessage() {
-        throw new UnsupportedOperationException(NOT_SUPPORTED); 
-    }
-
-    @Override
-    public void init() {
-        throw new UnsupportedOperationException(NOT_SUPPORTED); 
-    }
-
-    @Override
-    public void attenteAck() {
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
-    }
-
-    @Override
     public void echange() {
-          Object objet=null;
-       try
-            {
-                   objet=joueur.getInput().readObject();
-                   LOG.log(Level.INFO, "j ai recus un {0}",objet);
-                   LOG.info((String) objet);
-            }
-             catch(Exception e)
-                 {
-            	 LOG.log(Level.SEVERE, e.getMessage(),e);
-                 }
-       if(objet instanceof Ping)
-       {
-            Object unCout=null;
-                   
-            Random rand=new SecureRandom();
-            LOG.log(Level.INFO,"j'envoi un ");
-            if((rand.nextInt(HUNDRED)+1)<=joueur.getProbaSmash())
-            {
-                unCout =new Pong();
-                LOG.log(Level.INFO,"{0}",unCout);
-               
-            }    
-            else
-            {
-                unCout=new Smash();
-                LOG.log(Level.INFO,"{0}",unCout);
+        Object objet = null;
+        try {
+            objet = joueur.getInput().readObject();
+            LOG.log(Level.INFO, "j ai recus un {0}", objet);
+            LOG.info((String) objet);
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, e.getMessage(), e);
+        }
+        if (objet instanceof Ping) {
+            Object unCout;
+
+            Random rand = new SecureRandom();
+            LOG.log(Level.INFO, "j'envoi un ");
+            if ((rand.nextInt(HUNDRED) + 1) <= joueur.getProbaSmash()) {
+                unCout = new Pong();
+                LOG.log(Level.INFO, "{0}", unCout);
+
+            } else {
+                unCout = new Smash();
+                LOG.log(Level.INFO, "{0}", unCout);
                 joueur.setEtat(joueur.getEtatIlSert());
                 joueur.jeMarque();
-                LOG.log(Level.INFO,"Fin de l'échange");
-                LOG.log(Level.INFO,"==========================================");
+                LOG.log(Level.INFO, "Fin de l'échange");
+                LOG.log(Level.INFO, "==========================================");
             }
-     
-            try {  
-            joueur.getOutput().writeObject(unCout);
-           }catch(Exception e)
-            {
-        	   LOG.log(Level.SEVERE, e.getMessage(),e);
+
+            try {
+                joueur.getOutput().writeObject(unCout);
+            } catch (Exception e) {
+                LOG.log(Level.SEVERE, e.getMessage(), e);
             }
-       }
-        if(objet instanceof Smash)
-       {
-           joueur.setEtat(joueur.getEtatIlSert());
-           joueur.ilMarque();
-           LOG.log(Level.INFO,"Fin de l'échange");
-           LOG.log(Level.INFO,"==========================================");
-       }
-        
+        }
+        if (objet instanceof Smash) {
+            joueur.setEtat(joueur.getEtatIlSert());
+            joueur.ilMarque();
+            LOG.log(Level.INFO, "Fin de l'échange");
+            LOG.log(Level.INFO, "==========================================");
+        }
+
     }
-    
-    
+
 }

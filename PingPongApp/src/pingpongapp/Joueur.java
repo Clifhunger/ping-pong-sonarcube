@@ -7,6 +7,10 @@ package pingpongapp;
 
 import java.io.*;
 import java.net.*;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import pingpongapp.etat.*;
 
 /**
@@ -28,39 +32,41 @@ public abstract class Joueur {
     private Etat etatRepos;
     private Etat etatFinActive;
     private Etat etatFinPassive;
-    
-    public Joueur()
-    {
-        etatAttentePingSmash=new AttentPingSmash(this);
-        etatFirstPingEmis=new FirstPingEmis(this);
-        etatIlJoue=new IlJoue(this);
-        etatIlSert=new IlSert(this);
-        etatInitActive=new InitActive(this);
-        etatJeJoue=new JeJoue(this);
-        etatJeSers=new JeSers(this);
-        etatRepos=new Repos(this);
-        etatFinActive=new FinActive(this);
-        etatFinPassive=new FinPassive(this);
+
+    public Joueur() {
+        etatAttentePingSmash = new AttentPingSmash(this);
+        etatFirstPingEmis = new FirstPingEmis(this);
+        etatIlJoue = new IlJoue(this);
+        etatIlSert = new IlSert(this);
+        etatInitActive = new InitActive(this);
+        etatJeJoue = new JeJoue(this);
+        etatJeSers = new JeSers(this);
+        etatRepos = new Repos(this);
+        etatFinActive = new FinActive(this);
+        etatFinPassive = new FinPassive(this);
     }
+
     public abstract void lancerConnexion();
-    
+
     /**
      *
      */
-    public  void init()
-    {
+    public void init() {
         etat.init();
     }
-    public void attenteAck()
-    {
+
+    public void attenteAck() {
         etat.attenteAck();
     }
-    public void echange()
-    {
+
+    public void echange() {
         etat.echange();
     }
+
     public abstract void setEtat(Etat etat);
-     public abstract Socket getSocket();
+
+    public abstract Socket getSocket();
+
     public Etat getEtat() {
         return etat;
     }
@@ -104,8 +110,8 @@ public abstract class Joueur {
     public Etat getEtatFinPassive() {
         return etatFinPassive;
     }
-    
-     public ObjectInputStream getInput() {
+
+    public ObjectInputStream getInput() {
         return input;
     }
 
@@ -120,14 +126,16 @@ public abstract class Joueur {
     public int getNumeroDuService() {
         return unePartie.getNumeroDuService();
     }
-     public void resetNumeroDuService() {
-       unePartie.resetNumeroDuService();
-    } 
-    public void serviceSuivant()
-    {
+
+    public void resetNumeroDuService() {
+        unePartie.resetNumeroDuService();
+    }
+
+    public void serviceSuivant() {
         unePartie.serviceSuivant();
     }
-     public int getProbaSmash() {
+
+    public int getProbaSmash() {
         return unePartie.getProbaSmash();
     }
 
@@ -138,25 +146,44 @@ public abstract class Joueur {
     public int getProbaAbandon() {
         return unePartie.getProbaAbandon();
     }
-    public void jeMarque()
-    {
+
+    public void jeMarque() {
         unePartie.jeMarque();
     }
-    public void ilMarque()
-    {
+
+    public void ilMarque() {
         unePartie.ilMarque();
     }
-     public int getMonScore() {
-        return  unePartie.getMonScore();
+
+    public int getMonScore() {
+        return unePartie.getMonScore();
     }
 
     public int getSonScore() {
-        return  unePartie.getSonScore();
+        return unePartie.getSonScore();
     }
+
     public int getScoreMax() {
         return unePartie.getScoreMax();
     }
+
     public abstract void close();
 
-}
+    public Properties runConfig() {
+        // recuperation du port dans le fichier config
+        Properties ipProps = new Properties();
+        FileInputStream in = null;
+        try {
+            in = new FileInputStream("src\\pingpongapp\\config.properties");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            ipProps.load(in);
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ipProps;
+    }
 
+}

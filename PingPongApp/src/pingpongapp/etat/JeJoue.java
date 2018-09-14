@@ -17,31 +17,12 @@ import pingpongapp.PDU.*;
  *
  * @author clifhunger
  */
-public class JeJoue implements Etat {
+public class JeJoue extends Etat {
     private Joueur joueur;
-    private static final String NOT_SUPPORTED = "Not supported yet.";
     private static final Logger LOG = Logger.getGlobal();
 
     public JeJoue(Joueur joueur) {
         this.joueur = joueur;
-    }
-
-    @Override
-    public String getMessage() {
-        LOG.log(Level.INFO, "jeJoue - getMessage");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
-    }
-
-    @Override
-    public void init() {
-        LOG.log(Level.INFO, "jeJoue - init");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
-    }
-
-    @Override
-    public void attenteAck() {
-        LOG.log(Level.INFO, "jeJoue - attenteAck");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override

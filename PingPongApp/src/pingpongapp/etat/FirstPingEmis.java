@@ -15,34 +15,12 @@ import pingpongapp.PDU.*;
  *
  * @author clifhunger
  */
-public class FirstPingEmis implements Etat {
+public class FirstPingEmis extends Etat {
     private Joueur joueur;
-    private static final String NOT_SUPPORTED = "Not supported yet.";
     private static final Logger LOG = Logger.getGlobal();
 
     public FirstPingEmis(Joueur joueur) {
         this.joueur = joueur;
-    }
-
-    @Override
-    public String getMessage() {
-        LOG.log(Level.INFO, "firstPingEmis - getMessage");
-        LOG.log(Level.INFO, "-------------*-------------");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
-    }
-
-    @Override
-    public void init() {
-        LOG.log(Level.INFO, "firstPingEmis - init");
-        LOG.log(Level.INFO, "--------------**------------");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
-    }
-
-    @Override
-    public void attenteAck() {
-        LOG.log(Level.INFO, "firstPingEmis - attenteAck");
-        LOG.log(Level.INFO, "---------------***-----------");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override

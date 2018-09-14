@@ -15,9 +15,8 @@ import pingpongapp.PDU.*;
  *
  * @author clifhunger
  */
-public class Repos implements Etat {
+public class Repos extends Etat {
     private Joueur joueur;
-    private static final String NOT_SUPPORTED = "Not supported yet.";
     private static final Logger LOG = Logger.getGlobal();
 
     public Repos(Joueur joueur) {
@@ -103,15 +102,5 @@ public class Repos implements Etat {
             }
 
         }
-    }
-
-    @Override
-    public void attenteAck() {
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
-    }
-
-    @Override
-    public void echange() {
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 }

@@ -16,25 +16,12 @@ import pingpongapp.PDU.Ackinit;
  *
  * @author clifhunger
  */
-public class InitActive implements Etat {
+public class InitActive extends Etat {
     private Joueur joueur;
-    private static final String NOT_SUPPORTED = "Not supported yet.";
     private static final Logger LOG = Logger.getGlobal();
 
     public InitActive(Joueur joueur) {
         this.joueur = joueur;
-    }
-
-    @Override
-    public String getMessage() {
-        LOG.log(Level.INFO, "initActive - getMessage");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
-    }
-
-    @Override
-    public void init() {
-        LOG.log(Level.INFO, "initActive - init");
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 
     @Override
@@ -58,10 +45,5 @@ public class InitActive implements Etat {
                 joueur.setEtat(joueur.getEtatIlSert());
             }
         }
-    }
-
-    @Override
-    public void echange() {
-        throw new UnsupportedOperationException(NOT_SUPPORTED);
     }
 }

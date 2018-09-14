@@ -9,13 +9,23 @@ package pingpongapp.etat;
  *
  * @author ecossard
  */
-public interface Etat {
+public abstract class Etat {
 
-    public String getMessage();
+    private static final String NOT_SUPPORTED = "Not supported yet.";
 
-    public void init();
+    public String getMessage() {
+        throw new UnsupportedOperationException(NOT_SUPPORTED);
+    }
 
-    public void attenteAck();
+    public void init() {
+        throw new UnsupportedOperationException(NOT_SUPPORTED);
+    }
 
-    public void echange();
+    public void attenteAck() {
+        throw new UnsupportedOperationException(NOT_SUPPORTED);
+    }
+
+    public void echange() {
+        throw new UnsupportedOperationException(NOT_SUPPORTED);
+    }
 }
