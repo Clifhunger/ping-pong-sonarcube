@@ -42,7 +42,7 @@ public class InitActive implements Etat {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
         if (reponse != null) {
-            if (reponse.getMessage().equals("non")) // si le serveur refuse la partie
+            if ("non".equals(reponse.getMessage())) // si le serveur refuse la partie
             {
                 LOG.info("fermeture de l'application");
                 joueur.close(); // fermeture des flux et de la scoket
