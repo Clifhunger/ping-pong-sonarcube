@@ -5,6 +5,7 @@
  */
 package pingpongapp.etat;
 
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Random;
 import java.util.logging.Level;
@@ -20,6 +21,7 @@ import pingpongapp.pdu.*;
 public class JeJoue extends Etat {
     private Joueur joueur;
     private static final Logger LOG = Logger.getGlobal();
+    private static final int HUNDRED = 100;
 
     public JeJoue(Joueur joueur) {
         this.joueur = joueur;
@@ -31,7 +33,7 @@ public class JeJoue extends Etat {
         Object cout;
         Random rand = new SecureRandom();
 
-        if ((rand.nextInt(100) + 1) <= joueur.getProbaSmash()) {
+        if ((rand.nextInt(HUNDRED) + 1) <= joueur.getProbaSmash()) {
             cout = new Smash();
             joueur.jeMarque();
             joueur.setEtat(joueur.getEtatJeSers());
@@ -43,7 +45,7 @@ public class JeJoue extends Etat {
         try {
             LOG.log(Level.INFO, "j envoi un {0}", cout);
             joueur.getOutput().writeObject(cout);
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
         if (cout instanceof Smash) {

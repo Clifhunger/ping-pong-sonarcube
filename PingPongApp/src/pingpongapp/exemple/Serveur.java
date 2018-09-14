@@ -17,6 +17,7 @@ import java.io.*;
 public class Serveur {
 	public static final int PORT_ECOUTE = 5555;
 	private static final Logger LOG = Logger.getGlobal();
+	private static final int AGE = 26;
 
 	private Serveur() {
 	}
@@ -71,11 +72,11 @@ public class Serveur {
 		// Creation de l'objet a envoyer et envoi
 		try {
 			LOG.log(Level.INFO, "Pre'paration de l'envoi...");
-			Personne p = new Personne("Jean", "Pierre", 26);
+			Personne p = new Personne("Jean", "Pierre", AGE);
 			LOG.log(Level.INFO, "Envoi de la personne...");
 			output.writeObject(p);
 			LOG.log(Level.INFO, "Personne envoyee' !");
-		} catch (Exception e) {
+		} catch (IOException e) {
 			LOG.log(Level.SEVERE, e.getMessage(), e);
 		}
 

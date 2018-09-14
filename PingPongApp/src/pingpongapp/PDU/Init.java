@@ -26,7 +26,7 @@ public class Init implements Serializable {
     }
 
     public int getMessage() {
-        return scoreMax;
+        return getScoreMax();
     }
 
     public int getScoreMax() {

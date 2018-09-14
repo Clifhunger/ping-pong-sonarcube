@@ -63,7 +63,7 @@ public class Client {
                 Personne personneRecue = (Personne) objet;
                 personneRecue.affiche();
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
         // Fermeture des flux et des sockets

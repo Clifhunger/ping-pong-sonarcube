@@ -27,8 +27,8 @@ public class Personne implements Serializable {
 	}
 
 	public void affiche() {
-		LOG.log(Level.INFO, "Nom : " + this.nom);
-		LOG.log(Level.INFO, "Prenom : " + this.prenom);
-		LOG.log(Level.INFO, "Age : " + this.age);
+		LOG.log(Level.INFO, "Nom : {0}", this.nom);
+		LOG.log(Level.INFO, "Prenom : {0}", this.prenom);
+		LOG.log(Level.INFO, "Age : {0}", this.age);
 	}
 }

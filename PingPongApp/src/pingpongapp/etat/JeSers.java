@@ -5,6 +5,7 @@
  */
 package pingpongapp.etat;
 
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Random;
 import java.util.logging.Level;
@@ -20,6 +21,9 @@ public class JeSers extends Etat {
     private Joueur joueur;
     private static final Logger LOG = Logger.getGlobal();
     private static final int SLEEP = 500;
+    private static final int TWO = 2;
+    private static final int HUNDRED = 100;
+    private static final int THREE = 3;
 
     public JeSers(Joueur joueur) {
         this.joueur = joueur;
@@ -35,7 +39,7 @@ public class JeSers extends Etat {
         }
         if (joueur.getMonScore() == joueur.getScoreMax() || joueur.getSonScore() == joueur.getScoreMax()) {
             over();
-        } else if (joueur.getNumeroDuService() == 2) {
+        } else if (joueur.getNumeroDuService() == TWO) {
             changeService();
         } else {
             abandon();
@@ -44,14 +48,15 @@ public class JeSers extends Etat {
 
     private void abandon() {
         Random rand = new SecureRandom();
-        if (rand.nextInt(100) + 1 <= joueur.getProbaAbandon() && joueur.getMonScore() <= (joueur.getSonScore() - 3)) {
+        if (rand.nextInt(HUNDRED) + 1 <= joueur.getProbaAbandon()
+                && joueur.getMonScore() <= (joueur.getSonScore() - THREE)) {
             try {
                 LOG.log(Level.INFO, "\n===========================================");
                 LOG.log(Level.INFO, "Score: " + joueur.getMonScore() + " - " + joueur.getSonScore());
                 LOG.log(Level.INFO, "j ai abandonné");
                 LOG.log(Level.INFO, "\n=========================================");
                 joueur.getOutput().writeObject(new Abandon("l'autre joueur abandonne"));
-            } catch (Exception e) {
+            } catch (IOException e) {
                 LOG.log(Level.SEVERE, e.getMessage(), e);
             }
             joueur.setEtat(joueur.getEtatFinActive());
@@ -67,7 +72,7 @@ public class JeSers extends Etat {
 
             try {
                 joueur.getOutput().writeObject(new Ping());
-            } catch (Exception e) {
+            } catch (IOException e) {
                 LOG.log(Level.SEVERE, e.getMessage(), e);
             }
             joueur.setEtat(joueur.getEtatFirstPingEmis());
@@ -78,7 +83,7 @@ public class JeSers extends Etat {
         try {
             LOG.log(Level.INFO, "changement de service");
             joueur.getOutput().writeObject(new Service("changement"));
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
 
@@ -86,7 +91,7 @@ public class JeSers extends Etat {
         try {
 
             ackService = (Service) joueur.getInput().readObject();
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
         LOG.log(Level.INFO, "{0}", ackService);
@@ -106,7 +111,7 @@ public class JeSers extends Etat {
         }
         try {
             joueur.getOutput().writeObject(uneFin);
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
         joueur.setEtat(joueur.getEtatFinActive());

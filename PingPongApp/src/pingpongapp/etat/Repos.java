@@ -18,6 +18,7 @@ import pingpongapp.pdu.*;
 public class Repos extends Etat {
     private Joueur joueur;
     private static final Logger LOG = Logger.getGlobal();
+    private static final int ELEVEN = 11;
 
     public Repos(Joueur joueur) {
         this.joueur = joueur;
@@ -44,12 +45,12 @@ public class Repos extends Etat {
         // envoie de la demande de partie au serveur
         joueur.lancerConnexion();
         LOG.log(Level.INFO, "je suis un client j'envoi une demande de partie");
-        Init init = new Init(11);
+        Init init = new Init(ELEVEN);
         try {
 
             joueur.getOutput().writeObject(init);
             LOG.log(Level.INFO, "envoie");
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
         joueur.setEtat(joueur.getEtatInitActive());
@@ -65,7 +66,7 @@ public class Repos extends Etat {
             objet = (Init) joueur.getInput().readObject();
             LOG.log(Level.INFO, "j ai recus une demande : ");
             LOG.log(Level.INFO, "{0}", objet);
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             LOG.log(Level.SEVERE, e.getMessage(), e);
         }
 
@@ -78,7 +79,7 @@ public class Repos extends Etat {
 
                 joueur.getOutput().writeObject(reponse);
                 LOG.log(Level.INFO, "envoie de la réponse");
-            } catch (Exception e) {
+            } catch (IOException e) {
                 LOG.log(Level.SEVERE, e.getMessage(), e);
             }
         } else {
@@ -89,7 +90,7 @@ public class Repos extends Etat {
             try {
                 joueur.getOutput().writeObject(reponse);
                 LOG.log(Level.INFO, "envoie de la réponse");
-            } catch (Exception e) {
+            } catch (IOException e) {
                 LOG.log(Level.SEVERE, e.getMessage(), e);
             }
             try {
