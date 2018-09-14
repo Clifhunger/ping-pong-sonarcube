@@ -26,7 +26,7 @@ public class Ackinit implements Serializable {
 
     @Override
     public String toString() {
-        if (reponse.equals("oui")) {
+        if ("oui".equals(reponse)) {
             return "j'accepte la partie";
         } else {
             return "je refuse la partie";
