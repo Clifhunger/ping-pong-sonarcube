@@ -16,14 +16,14 @@ import pingpongapp.PDU.Ackinit;
  *
  * @author clifhunger
  */
-public class InitActive implements Etat{
+public class InitActive implements Etat {
     private Joueur joueur;
-    private static final String NOT_SUPPORTED="Not supported yet.";
-    private static final Logger LOG=Logger.getGlobal();
+    private static final String NOT_SUPPORTED = "Not supported yet.";
+    private static final Logger LOG = Logger.getGlobal();
 
     public InitActive(Joueur joueur) {
         this.joueur = joueur;
-    } 
+    }
 
     @Override
     public String getMessage() {
@@ -38,34 +38,29 @@ public class InitActive implements Etat{
     @Override
     public void attenteAck() {
         // attente de la réponse du serveur
-         Ackinit reponse=null;
-           try
-            {
-        	       LOG.log(Level.INFO,"Attente de la réponse");
-                   reponse=(Ackinit) joueur.getInput().readObject(); 
-                   LOG.log(Level.INFO,"j ai reçus la réponse du serveur : ");
-                   LOG.log(Level.INFO,"{0}",reponse);
-            }
-             catch(IOException | ClassNotFoundException e)
-                 {
-               LOG.log(Level.SEVERE, e.getMessage(),e);
-			}
+        Ackinit reponse = null;
+        try {
+            LOG.log(Level.INFO, "Attente de la réponse");
+            reponse = (Ackinit) joueur.getInput().readObject();
+            LOG.log(Level.INFO, "j ai reçus la réponse du serveur : ");
+            LOG.log(Level.INFO, "{0}", reponse);
+        } catch (IOException | ClassNotFoundException e) {
+            LOG.log(Level.SEVERE, e.getMessage(), e);
+        }
 
-         if("non".equals(reponse.getMessage()))
-         {
-        	 LOG.log(Level.INFO,"fermeture de l'application");
-             joueur.close();
-             System.exit(0);
-         }
-         else
-         {
-              joueur.setEtat(joueur.getEtatIlSert());
-         }
-          
+        if (reponse != null) {
+            if ("non".equals(reponse.getMessage())) {
+                LOG.log(Level.INFO, "fermeture de l'application");
+                joueur.close();
+                System.exit(0);
+            } else {
+                joueur.setEtat(joueur.getEtatIlSert());
+            }
+        }
     }
 
     @Override
     public void echange() {
-        throw new UnsupportedOperationException(NOT_SUPPORTED); 
-        }
+        throw new UnsupportedOperationException(NOT_SUPPORTED);
+    }
 }
