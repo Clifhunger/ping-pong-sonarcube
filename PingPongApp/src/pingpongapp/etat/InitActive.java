@@ -52,7 +52,6 @@ public class InitActive implements Etat {
             if ("non".equals(reponse.getMessage())) {
                 LOG.log(Level.INFO, "fermeture de l'application");
                 joueur.close();
-                System.exit(0);
             } else {
                 joueur.setEtat(joueur.getEtatIlSert());
             }

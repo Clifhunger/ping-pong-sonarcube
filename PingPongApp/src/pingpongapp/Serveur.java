@@ -12,21 +12,23 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pingpongapp.etat.*;
+
 /**
  *
  * @author ecossard
  */
 public class Serveur extends Joueur {
-     public static int portEcoute;
-     private ServerSocket socketServeur=null;
-     private Socket socketClient = null;
-    public Serveur()
-    {
+    private static int portEcoute;
+    private ServerSocket socketServeur = null;
+    private Socket socketClient = null;
+    private static final Logger LOG = Logger.getGlobal();
+
+    public Serveur() {
         super();
-        unePartie=new ParamPartie(11);
-        
-        //recuperation du port dans le fichier config
-         Properties ipProps = new Properties();
+        unePartie = new ParamPartie(11);
+
+        // recuperation du port dans le fichier config
+        Properties ipProps = new Properties();
         FileInputStream in = null;
         try {
             in = new FileInputStream("src\\pingpongapp\\config.properties");
@@ -38,70 +40,75 @@ public class Serveur extends Joueur {
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
-        portEcoute=parseInt(ipProps.getProperty("app.port"));
-        System.out.println(portEcoute );
+        portEcoute = parseInt(ipProps.getProperty("app.port"));
+        LOG.info(String.valueOf(portEcoute));
         setEtat(super.getEtatRepos());
-        try {	
-	    socketServeur = new ServerSocket(portEcoute);
-	} catch(IOException e) {
-	    System.err.println("Creation de la socket impossible : " + e);
-	    System.exit(-1); // code retour pour le système
-	}
-        
-        
-    }
-    public void lancerConnexion()
-    {
-	
-         // Attente d'une connexion d'un client
-        Socket socketClient = null;
-	try {
-            System.out.println("Attente de connexion");
-	    socketClient = socketServeur.accept();
-            System.out.println("Connexion OK");
-	} catch(IOException e) {
-	    System.err.println("Erreur lors de l'attente d'une connexion : " + e);
-	    System.exit(-1); // code retour pour le système
-	}  
-           // Association d'un flux d'entree et de sortie
-           try {
-	    input = new ObjectInputStream(socketClient.getInputStream());
-	    output = new ObjectOutputStream(socketClient.getOutputStream());
+        try {
+            socketServeur = new ServerSocket(portEcoute);
+        } catch (IOException e) {
+            LOG.info("Creation de la socket impossible : " + e);
+        }
 
-	} catch(IOException e) {
-	    System.err.println("Association des flux impossible : " + e);
-	    System.exit(-1);
-	}
-	
     }
 
-     @Override
+    /**
+     * @return the portEcoute
+     */
+    public static int getPortEcoute() {
+        return portEcoute;
+    }
+
+    /**
+     * @param portEcoute the portEcoute to set
+     */
+    public static void setPortEcoute(int portEcoute) {
+        Serveur.portEcoute = portEcoute;
+    }
+
+    public void lancerConnexion() {
+
+        // Attente d'une connexion d'un client
+        Socket localeSocketClient = null;
+        try {
+            LOG.info("Attente de connexion");
+            localeSocketClient = socketServeur.accept();
+            LOG.info("Connexion OK");
+        } catch (IOException e) {
+            LOG.info("Erreur lors de l'attente d'une connexion : " + e);
+        }
+        // Association d'un flux d'entree et de sortie
+        if (localeSocketClient != null) {
+            try {
+                input = new ObjectInputStream(localeSocketClient.getInputStream());
+                output = new ObjectOutputStream(localeSocketClient.getOutputStream());
+
+            } catch (IOException e) {
+                LOG.info("Association des flux impossible : " + e);
+            }
+        }
+
+    }
+
+    @Override
     public void setEtat(Etat etat) {
-       this.etat=etat;
+        this.etat = etat;
     }
 
     @Override
     public void close() {
-        try{
-       input.close();
-       output.close();
-       socketClient.close();
-       socketServeur.close();
+        try {
+            input.close();
+            output.close();
+            socketClient.close();
+            socketServeur.close();
+        } catch (IOException e) {
+            LOG.info("Erreur lors de la fermeture des flux et des sockets : " + e);
         }
-       catch(IOException e) {
-            System.err.println("Erreur lors de la fermeture des flux et des sockets : " + e);
-            System.exit(-1);
-        }  
     }
+
     @Override
     public Socket getSocket() {
         return socketClient;
     }
-    
-    
 
-    
-    
-    
-    
 }
