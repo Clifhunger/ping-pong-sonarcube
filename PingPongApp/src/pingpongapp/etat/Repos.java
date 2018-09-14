@@ -9,7 +9,7 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pingpongapp.*;
-import pingpongapp.PDU.*;
+import pingpongapp.pdu.*;
 
 /**
  *

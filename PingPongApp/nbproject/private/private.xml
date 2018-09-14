@@ -3,33 +3,33 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/PDU/Fin.java</file>
+            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/pdu/Fin.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/etat/Repos.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/Service.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/Client.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/etat/IlJoue.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/exemple/Client.java</file>
-            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/PDU/Pong.java</file>
-            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/PDU/Smash.java</file>
+            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/pdu/Pong.java</file>
+            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/pdu/Smash.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/etat/JeJoue.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/etat/FinPassive.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/exemple/Serveur.java</file>
-            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/PDU/Ping.java</file>
-            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/PDU/Service.java</file>
+            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/pdu/Ping.java</file>
+            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/pdu/Service.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/etat/FirstPingEmis.java</file>
-            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/PDU/Ackinit.java</file>
+            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/pdu/Ackinit.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/config.properties</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/etat/AttentPingSmash.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/etat/InitActive.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/Serveur.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/ParamPartie.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/etat/FinActive.java</file>
-            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/PDU/Init.java</file>
-            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/PDU/Ace.java</file>
+            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/pdu/Init.java</file>
+            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/pdu/Ace.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/etat/JeSers.java</file>
-            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/PDU/AckFin.java</file>
+            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/pdu/AckFin.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/PingPongApp.java</file>
-            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/PDU/Abandon.java</file>
+            <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/pdu/Abandon.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/Joueur.java</file>
             <file>file:/C:/Users/clifhunger/Desktop/Semestre%203/PRES%203/PingPongApp/PingPongApp/src/pingpongapp/etat/IlSert.java</file>
         </group>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pingpongapp.PDU;
+package pingpongapp.pdu;
 
 import java.io.Serializable;
 
@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author ecossard
  */
 public class Init implements Serializable{
-    
+
     private int scoreMax;
     public Init(int unScoreMax)
     {
@@ -20,7 +20,7 @@ public class Init implements Serializable{
     }
     public String toString()
     {
-       return "je suis un Client je veux jouer une partie avec un score maximum de "+ this.scoreMax+" points"; 
+       return "je suis un Client je veux jouer une partie avec un score maximum de "+ this.scoreMax+" points";
     }
     public int getMessage()
     {
@@ -30,5 +30,5 @@ public class Init implements Serializable{
     public int getScoreMax() {
         return scoreMax;
     }
-    
+
 }

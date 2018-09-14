@@ -19,8 +19,8 @@ import pingpongapp.etat.*;
  */
 public abstract class Joueur {
     protected ParamPartie unePartie;
-    protected static ObjectInputStream input = null;
-    protected static ObjectOutputStream output = null;
+    protected ObjectInputStream input = null;
+    protected ObjectOutputStream output = null;
     protected Etat etat;
     private Etat etatAttentePingSmash;
     private Etat etatFirstPingEmis;

@@ -30,9 +30,8 @@ public class Client extends Joueur {
         // recuperation de la config
         Properties ipProps = super.runConfig();
         try {
-            Logger.getLogger(Client.class.getName()).info(String.valueOf(ipProps.getProperty("app.port")));
             socket = new Socket(InetAddress.getByName(ipProps.getProperty("app.ipServeur")),
-                    parseInt(ipProps.getProperty("app.port")));// ici a finir=====================================
+                    parseInt(ipProps.getProperty("app.port")));
         } catch (UnknownHostException e) {
             Logger.getLogger(Client.class.getName()).info("Erreur sur l'hôte : " + e);
         } catch (IOException e) {
